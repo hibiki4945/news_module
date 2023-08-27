@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello Thymeleaf</title>
+</head>
+<body>
+	<p th:text="'Hello, ' + ${name0} + '!'"/>
+	<p th:text="${num0}"/>
+	
+	<table>
+		<tr>
+			<td th:text="id"></td>
+			<td th:text="num"></td>
+		</tr>
+		<tr th:each="item : ${res}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.num}"></td>
+		</tr>
+	</table>
+	
+	<a href="/db_test">Go!</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

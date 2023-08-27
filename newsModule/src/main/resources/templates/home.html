@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Home Page</title>
+</head>
+<body class="bg-slate-400">
+
+	<div align="center">
+		<header class="bg-gray-200">
+		    <span class="text-2xl font-bold mr-48">最新消息模組</span>
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer"><a href="/home">首頁</a></button>
+			<button class="rounded-full text-white bg-blue-600 px-2 m-2 hover:scale-105 active:scale-95 hover:cursor-pointer"><a href="/all_news">所有消息</a></button>
+		</header>
+	    <h1 class="text-3xl font-bold underline">
+	      最新消息:
+	    </h1>
+		<form action="#" th:action="@{/home}" th:object="${res}" method="post" class="h-screen">
+			<table>
+				<tr>
+					<td th:text="標題" class="border border-2 border-black bg-slate-"></td>
+					<td th:text="副標題" class="border border-2 border-black"></td>
+					<td th:text="開始時間" class="border border-2 border-black"></td>
+					<td th:text="結束時間" class="border border-2 border-black"></td>
+					<td th:text="內容" class="border border-2 border-black"></td>
+					<td th:text="副內容" class="border border-2 border-black"></td>
+				</tr>
+				<tr th:each="item : ${res}">
+					<td th:text="${item.title}" class="border border-2 border-black bg-white"></td>
+					<td th:text="${item.subTitle}" class="border border-2 border-black bg-white"></td>
+					<td th:text="${item.startTime}" class="border border-2 border-black bg-white"></td>
+					<td th:text="${item.endTime}" class="border border-2 border-black bg-white"></td>
+					<td th:text="${item.content}" class="border border-2 border-black bg-white"></td>
+					<td th:text="${item.subContent}" class="border border-2 border-black bg-white"></td>
+				</tr>
+			</table>
+		</form>
+	    <footer class="py-24 bg-gray-200">
+		 	<p>版權所有© 2023 Github-hibiki4945</p>
+		</footer>
+	</div>
+</body>
+</html>
