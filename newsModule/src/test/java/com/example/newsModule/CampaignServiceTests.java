@@ -22,36 +22,6 @@ public class CampaignServiceTests {
     @Autowired
     private CampaignDao campaignDao;
     
-//    @Test
-//    public void addInfoTest() {
-//        Campaign campaign = new Campaign("demo2", "demo", "2023-08-26", "2023-08-27", "demo", "demo");
-//        List<Campaign> CampaignList = new ArrayList<Campaign>(Arrays.asList(campaign));
-//        CampaignResponse res = campaignService.addInfo(CampaignList);
-//        Assert.isTrue((res.getCode() == "200"), "Failed!");
-//    }
-//
-//    @Test
-//    public void changeInfoTest() {
-//        Campaign campaign = new Campaign("demo2", "demo2", "2023-08-26", "2023-08-27", "demo", "demo");
-//        List<Campaign> CampaignList = new ArrayList<Campaign>(Arrays.asList(campaign));
-//        CampaignResponse res = campaignService.changeInfo(CampaignList);
-//        Assert.isTrue((res.getCode() == "200"), "Failed!");
-//    }
-//
-//    @Test
-//    public void getInfoTest() {
-//        CampaignResponse res = campaignService.getInfo("demo2");
-//        Assert.isTrue((res.getCode() == "200"), "Failed!");
-//    }
-//
-//    @Test
-//    public void deleteInfoTest() {
-//        CampaignResponse res = campaignService.deleteInfo("demo2");
-//        Assert.isTrue((res.getCode() == "200"), "Failed!");
-//    }
-    
-
-
     @Test
     public void addInfoTest() {
 

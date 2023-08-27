@@ -119,15 +119,8 @@ public class CampaignServiceImpl implements CampaignService{
         Optional<Campaign> res = campaignDao.findById(title);
         Campaign campaign = res.get();   
         campaignList.add(campaign);
-//        if(campaignList == null) {
-//            return new CampaignResponse(RtnCode.DATA_ERROR.getCode(), RtnCode.DATA_ERROR.getMessage(), campaignList);            
-//        }
-//        else {
-            return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);        
-//        }
-        
-//        return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), Campaign);
-    }
+        return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);        
+}
 
     @Override
     public CampaignResponse deleteInfo(String title) {
@@ -145,34 +138,22 @@ public class CampaignServiceImpl implements CampaignService{
         Optional<Campaign> res = campaignDao.findById(title);
         Campaign campaign = res.get();   
         campaignList.add(campaign);
-//        if(campaignList == null) {
-//            return new CampaignResponse(RtnCode.DATA_ERROR.getCode(), RtnCode.DATA_ERROR.getMessage(), campaignList);            
-//        }
-//        else {
             campaignDao.deleteById(title);
             return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);        
-//        }
     }
 
     @Override
     public CampaignResponse Top10Info() {
         // TODO Auto-generated method stub
         List<Campaign> campaignList = new ArrayList<Campaign>();
-        
-//        List<Campaign> campaignList = campaignDao.findByTitleContaining(str);
         campaignList = campaignDao.findTop10ByStartTimeContainingOrderByStartTimeDesc("-");
-
         return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);
     }
 
     @Override
     public CampaignResponse findAllInfo() {
         // TODO Auto-generated method stub
-//      check : item.title = null || item.title.isBlank()
-//      check : existById(item.title)            
-
         List<Campaign> campaignList = campaignDao.findByStartTimeContainingOrderByStartTimeDesc("-");
-
         return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);
     }
 
@@ -196,10 +177,8 @@ public class CampaignServiceImpl implements CampaignService{
             if(!(time2.matches("[\\d]{4}-[\\d]{2}-[\\d]{2}"))) {
                 return new CampaignResponse(RtnCode.DATA_ERROR.getCode(), RtnCode.DATA_ERROR.getMessage(), campaignList);
             }
-//            
             campaignList = campaignDao.findByStartTimeBetweenOrderByStartTimeDesc(time1, time2);   
-            
-        return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);
+            return new CampaignResponse(RtnCode.SUCCESSFUL.getCode(), RtnCode.SUCCESSFUL.getMessage(), campaignList);
     
     }
 

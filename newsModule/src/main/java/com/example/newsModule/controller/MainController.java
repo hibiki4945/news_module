@@ -24,62 +24,46 @@ public class MainController {
     
     @RequestMapping(value = "/home")
     public String home(@RequestParam(name = "name", required = false, defaultValue = "World0") String name, Model model) {
-
         CampaignResponse res = campaignService.Top10Info();
         model.addAttribute("res", res.getCampaignList());
-        
         return "home";
     }
 
-
     @RequestMapping(value = "/all_news")
     public String all_news(@RequestParam(name = "name", required = false, defaultValue = "World0") String name, Model model) {
-
         CampaignResponse res = campaignService.findAllInfo();
         model.addAttribute("res", res.getCampaignList());
         model.addAttribute("search", "");
         model.addAttribute("change", "");
         model.addAttribute("delete", "");
-        
         return "all_news";
     }
 
     @GetMapping("/edit")
     public String edit(Model model) {
         Campaign campaign = new Campaign();
-//                  傳入內部之命名  資料來源
         model.addAttribute("campaign", campaign);
         model.addAttribute("error", "");
-        
         return "edit";
     }
     
     @PostMapping("/edit")
     public String edit_show(@ModelAttribute("campaign") Campaign campaign, Model model) {
         System.out.println(campaign);
-//      記得 在此 做防呆(當 錯誤發生(則(return "edit";)&顯示(錯誤訊息)))
-        
         List<Campaign> CampaignList = new ArrayList<Campaign>(Arrays.asList(campaign));
         CampaignResponse res = campaignService.addInfo(CampaignList);
-        
         if(res.getCode() != "200") {
             model.addAttribute("error", res.getMessage());
             return "edit";
         }
-        
         return "edit_done";
     }
 
     @GetMapping("/delete")
     public String delete(Model model) {
         Campaign campaign = new Campaign();
-//                  傳入內部之命名  資料來源
         model.addAttribute("campaign", campaign);
         model.addAttribute("error", "");
-        
-//        String title = "";
-//        model.addAttribute("title", title);
-        
         return "delete";
     }
     
@@ -87,12 +71,10 @@ public class MainController {
     public String delete(@ModelAttribute("campaign") Campaign campaign, Model model) {
         System.out.println(campaign);
         CampaignResponse res = campaignService.deleteInfo(campaign.getTitle());
-
         if(res.getCode() != "200") {
             model.addAttribute("error", res.getMessage());
             return "delete";
         }
-        
         return "delete_done";
     }
 
@@ -101,7 +83,6 @@ public class MainController {
         Campaign campaign = new Campaign();
         model.addAttribute("campaign", campaign);
         model.addAttribute("error", "");
-        
         return "change_select";
     }
     
@@ -114,7 +95,6 @@ public class MainController {
         }
         System.out.println(campaign);
         model.addAttribute("campaign", campaign);
-        
         if(res.getCode() != "200") {
             model.addAttribute("error", res.getMessage());
             return "change_select";
@@ -127,22 +107,18 @@ public class MainController {
         Campaign campaign = new Campaign();
         model.addAttribute("campaign", campaign);
         model.addAttribute("error", "");
-        
         return "change";
     }
     
     @PostMapping("/change")
     public String change(@ModelAttribute("campaign") Campaign campaign, Model model) {
         System.out.println(campaign);
-
         List<Campaign> CampaignList = new ArrayList<Campaign>(Arrays.asList(campaign));
         CampaignResponse res = campaignService.changeInfo(CampaignList);
-
         if(res.getCode() != "200") {
             model.addAttribute("error", res.getMessage());
             return "change";
         }
-        
         return "change_done";
     }
 
@@ -150,34 +126,21 @@ public class MainController {
     public String search(Model model) {
         Campaign campaign = new Campaign();
         model.addAttribute("campaign", campaign);
-//        model.addAttribute("time1", "");
-//        model.addAttribute("time2", "");
         model.addAttribute("error", "");
-        
         return "search";
     }
     
     @PostMapping("/search")
     public String search(@ModelAttribute("campaign") Campaign campaign, Model model) {
         System.out.println(campaign);
-//        System.out.println(time1);
-//        System.out.println(time2);
-//        System.out.println("!");
-        
         List<Campaign> campaignList = new ArrayList<Campaign>();
         CampaignResponse res = campaignService.getBetweenInfo(campaign.getStartTime(), campaign.getEndTime());
-
         if(res.getCode() != "200") {
             model.addAttribute("error", res.getMessage());
             return "search";
         }
         campaignList = res.getCampaignList();
-//        for (Campaign item : campaignList) {
-//            System.out.println(item);
-//            System.out.println("!");
-//        }
         model.addAttribute("res", campaignList);
-        
         return "search_done";
     }
     
